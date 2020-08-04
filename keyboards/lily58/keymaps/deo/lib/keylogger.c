@@ -109,7 +109,7 @@ void set_keylog(uint16_t keycode, keyrecord_t *record) {
   }
 
   // update keylog
-  snprintf(keylog_str, sizeof(keylog_str), "k%d:%c",
+  snprintf(keylog_str, sizeof(keylog_str), "k%02d:%c",
            keycode, name);
 
   // update keylogs

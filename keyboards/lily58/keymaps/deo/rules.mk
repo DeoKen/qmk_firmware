@@ -26,8 +26,7 @@ WPM_ENABLE = yes
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 # If you want to change the display of OLED, you need to change here
-SRC +=	./keymaps/deo/lib/rgb_state_reader.c \
-        ./keymaps/deo/lib/layer_state_reader.c \
+SRC +=	./keymaps/deo/lib/layer_state_reader.c \
 		./keymaps/deo/lib/keylogger.c \
 		./keymaps/deo/lib/host_led_state_reader.c \
         ./keymaps/deo/lib/logo_reader.c \
@@ -35,3 +34,4 @@ SRC +=	./keymaps/deo/lib/rgb_state_reader.c \
 		./keymaps/deo/lib/wpm_reader.c \
         # ./keymaps/deo/lib/mode_icon_reader.c \
         # ./keymaps/deo/lib/timelogger.c \
+		# ./keymaps/deo/lib/rgb_state_reader.c \

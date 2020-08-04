@@ -36,13 +36,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef RGBLED_NUM
 //#define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-#define RGBLED_NUM 10
-#define RGB_LED_SPLIT 5
+#define RGBLED_NUM 12
+#define RGBLED_SPLIT {6, 6}
 #define RGBLIGHT_LAYERS
-#define RGBLIGHT_LIMIT_VAL 120
+
+#define RGBLIGHT_LIMIT_VAL 192
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
 #define RGBLIGHT_VAL_STEP 17
+
 #define ENCODERS_PAD_A { F4 }
 #define ENCODERS_PAD_B { F5 }
 #define ENCODER_RESOLUTION 4
@@ -51,10 +53,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define OLED_TIMEOUT 0
 #define OLED_SCROLL_TIMEOUT 30000
-// Underglow
-/*
-#undef RGBLED_NUM
-#define RGBLED_NUM 14    // Number of LEDs
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_SLEEP
-*/
+
+

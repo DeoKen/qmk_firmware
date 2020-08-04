@@ -93,7 +93,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }*/
 
 
-// Setting ADJUST layer RGB back to default
+/*// Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
     layer_on(layer3);
@@ -101,7 +101,7 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
     layer_off(layer3);
   }
 }
-
+*/
 uint8_t encoder_func = 0;
 /*
 0 = volume
