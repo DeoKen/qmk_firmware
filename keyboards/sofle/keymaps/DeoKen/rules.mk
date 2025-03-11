@@ -1,0 +1,2 @@
+TRI_LAYER_ENABLE = yes
+CONVERT_TO=rp2040_ce
