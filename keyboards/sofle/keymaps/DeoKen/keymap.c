@@ -2,8 +2,6 @@
 
 #include QMK_KEYBOARD_H
 
-
-
 // #define _QWERTY 0
 // #define _LOWER 1
 // #define _RAISE 2
@@ -141,9 +139,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT(
   //,------------------------------------------------.                    ,---------------------------------------------------.
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-  QK_BOOT,   XXXXXXX,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX,   XXXXXXX,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
   RGB_TOG, RGB_HUI,RGB_SAI, RGB_VAI, RGB_SPI, KC_NO,          			  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
@@ -155,66 +153,72 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// #ifdef RGBLIGHT_ENABLE
-// char layer_state_str[70];
-// // Now define the array of layers. Later layers take precedence
+#ifdef RGBLIGHT_ENABLE
 
-// // QWERTY,
-// //Light on inner column and underglow
-// const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	// {0,1,HSV_GOLD}
+char layer_state_str[70];
+// Now define the array of layers. Later layers take precedence
 
-// );
+// QWERTY,
+//Light on inner column and underglow
+const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+	{3,1,HSV_WHITE},
+	{38,1,HSV_WHITE}
 
-// // lower_layer,
-// // Light on outer column and underglow
-// const rgblight_segment_t PROGMEM lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-	// {0,1,HSV_RED}
+);
 
-// );
-// // raise_layer,
-// // Light on inner column and underglow
-// const rgblight_segment_t PROGMEM raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-	// {0,1,HSV_BLUE}
+// lower_layer,
+// Light on outer column and underglow
+const rgblight_segment_t PROGMEM lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{3,1,HSV_RED},
+	{38,1,HSV_RED}
 
-// );
-// // adjust_layer,
-// // Light on inner column and underglow
-// const rgblight_segment_t PROGMEM adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-   // {0,1,HSV_PURPLE}
-// );
+);
+// raise_layer,
+// Light on inner column and underglow
+const rgblight_segment_t PROGMEM raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{3,1,HSV_BLUE},
+	{38,1,HSV_BLUE}
+
+);
+// adjust_layer,
+// Light on inner column and underglow
+const rgblight_segment_t PROGMEM adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+   {3,1,HSV_PURPLE},
+   {38,1,HSV_PURPLE}
+);
 
 
-// const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-	// layer_qwerty_lights,
-    // lower_layer,
-	// raise_layer,
-	// adjust_layer
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+	layer_qwerty_lights,
+    lower_layer,
+	raise_layer,
+	adjust_layer
 	
-    // // layer_qwerty_lights,
-	// // layer_num_lights,// overrides layer 1
-	// // layer_symbol_lights,
-    // // layer_command_lights,
-	// // layer_numpad_lights,
-	// // layer_switcher_lights,  // Overrides other layers
-	// // layer_colemakdh_lights
-// );
+    // layer_qwerty_lights,
+	// layer_num_lights,// overrides layer 1
+	// layer_symbol_lights,
+    // layer_command_lights,
+	// layer_numpad_lights,
+	// layer_switcher_lights,  // Overrides other layers
+	// layer_colemakdh_lights
+);
 
-// layer_state_t layer_state_set_user(layer_state_t state) {
-	// rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
-	// rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
-	// rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
-	// rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
-    // return state;
-// }
-// void keyboard_post_init_user(void) {
-    // // Enable the LED layers
-    // rgblight_layers = my_rgb_layers;
+layer_state_t layer_state_set_user(layer_state_t state) {
+	rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
+	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
+	rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
+	rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
+    return state;
+}
+void keyboard_post_init_user(void) {
+	rgblight_sethsv_noeeprom(HSV_WHITE);
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
 
-	// // rgblight_mode(10);// haven't found a way to set this in a more useful way
+	// rgblight_mode(10);// haven't found a way to set this in a more useful way
 
-// }
-// #endif
+}
+#endif
 
 #ifdef OLED_ENABLE
 uint8_t encoder_func0 = 1;
@@ -310,12 +314,20 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     }
     return rotation;
 }
-
+static void render_logo(void) {
+    static const char PROGMEM qmk_logo[] = {
+        0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
+        0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,
+        0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0
+    };
+    oled_write_P(qmk_logo, false);
+}
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
         print_status();
 		oled_scroll_set_speed(5);
     } else {
+		render_logo();
 		oled_scroll_set_speed(4);
     }
     return false;
